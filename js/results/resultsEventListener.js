@@ -1,10 +1,7 @@
-import {setUp, refresh, createCSV, createJpeg} from './results.js'
+import {setUp, createCSV, createJpeg} from './results.js'
 
 window.addEventListener("DOMContentLoaded", setUp)
 window.setUp = setUp
-
-window.addEventListener("DOMContentResize", refresh)
-window.refresh = refresh
 
 document.getElementById("csvLink").addEventListener("click", createCSV)
 window.createCSV = createCSV
@@ -13,7 +10,10 @@ document.getElementById("jpegLink").addEventListener("click", createJpeg)
 window.setUpVideo = setUpVideo
 
 
-import {toggleGraph} from './graph.js'
+import {toggleGraph, refresh} from './graph.js'
+
+window.addEventListener("DOMContentResize", refresh)
+window.refresh = refresh
 
 document.getElementById("intervalButton").addEventListener("click", () => {toggleGraph('interval')})
 document.getElementById("timestampButton").addEventListener("click", () => {toggleGraph('timestamp')})

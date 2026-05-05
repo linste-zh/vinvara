@@ -1,12 +1,16 @@
-import {experimentData, scale, settings, timeStamp, chart} from './results.js';
-import {videoShown, videoPicked} from './video.js'
+import {experimentData, scale, settings} from './results.js';
+import {videoShown, videoPicked, timeStamp, updateTimeStamp} from './video.js'
 
 const intervalValues = []
 const timestampValues = []
 const ratingValues = []
+var chart = null
 
 function createGraph(){
-    inputs = experimentData["dataInputs"]
+    let cnt = document.getElementById("graphContainer")
+    cnt.innerHTML = "<canvas id='resultChart'></canvas>"
+
+    var inputs = experimentData["dataInputs"]
 
     for (var i in inputs){
         intervalValues.push(inputs[i].associatedInterval)
@@ -28,13 +32,13 @@ function showGraph(variable = intervalValues){
     }
 
     var middle_rating = scale[Math.floor(Object.values(scale).length / 2)]
-    lastDataPoint = experimentData[Object.values(experimentData).length - 1]
-    maxX = Math.ceil(settings["videoDuration"])
+    var lastDataPoint = experimentData[Object.values(experimentData).length - 1]
+    var maxX = Math.ceil(settings["videoDuration"])
 
     if(Object.values(scale).length % 2 != 0){
-        middle = middle_rating["value"];
+        var middle = middle_rating["value"];
     }else{
-        middle = middle_rating["value"] - 0.5;
+        var middle = middle_rating["value"] - 0.5;
     }
 
     //largely done via ChatGPT
@@ -100,7 +104,7 @@ function showGraph(variable = intervalValues){
                 const canvasPosition = Chart.helpers.getRelativePosition(e, chart);
                 const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
 
-                timeStamp = dataX
+                updateTimeStamp(dataX)
                 chart.options.plugins.annotation.annotations.timestampLine.value = timeStamp;
                 chart.update()
 
@@ -144,9 +148,17 @@ function showGraph(variable = intervalValues){
     }
 }
 
+function refresh(){
+    if(chart != null){
+        chart.resize();
+        chart.update();
+    }
+}
+
+
 function toggleGraph(button){
-    ib = document.getElementById("intervalButton")
-    tsb = document.getElementById("timestampButton")
+    var ib = document.getElementById("intervalButton")
+    var tsb = document.getElementById("timestampButton")
     if(button == "interval"){
         ib.classList.add("activeOption")
         tsb.classList.remove("activeOption")
@@ -159,8 +171,10 @@ function toggleGraph(button){
 }
 
 export{
+    chart,
     requestGraph,
     showGraph,
+    refresh,
     createGraph,
     toggleGraph
 }

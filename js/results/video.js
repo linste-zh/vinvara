@@ -1,7 +1,12 @@
-import {timeStamp, chart} from './results.js';
+import {chart} from './graph.js';
 
 var videoShown = false
 var videoPicked = false
+var timeStamp = 0
+
+function updateTimeStamp(x){
+    timeStamp = x
+}
 
 function toggleVideo(){
     document.getElementById("videoArrow").classList.toggle("active")
@@ -87,6 +92,8 @@ function playVideo(time){
 export{
     videoShown,
     videoPicked,
+    timeStamp,
+    updateTimeStamp,
     setUpVideo,
     toggleVideo
 }

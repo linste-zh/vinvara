@@ -3,8 +3,6 @@ import {createGraph, requestGraph} from './graph.js';
 const experimentData = JSON.parse(localStorage.getItem("experimentDataObject"))
 const scale = JSON.parse(localStorage.getItem("scaleObject"))
 const settings = JSON.parse(localStorage.getItem("settingsObject"))
-var timeStamp = 0
-var chart = null
 
 function setUp(){
     if(experimentData != null){
@@ -29,13 +27,6 @@ function setUp(){
     })
 
     toggleVideo()
-}
-
-function refresh(){
-    if(chart != null){
-        chart.resize();
-        chart.update();
-    }
 }
 
 //source: https://medium.com/@idorenyinudoh10/how-to-export-data-from-javascript-to-a-csv-file-955bdfc394a9
@@ -88,10 +79,7 @@ export {
     experimentData,
     scale,
     settings,
-    timeStamp,
-    chart,
     setUp,
-    refresh,
     createCSV,
     createJpeg
 };

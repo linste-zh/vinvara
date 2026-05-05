@@ -4,12 +4,12 @@
         <title>Results</title>
         <link href="./css/results.css" type="text/css" rel="stylesheet">
         <link href="./css/basicLayout.css" type="text/css" rel="stylesheet">
-        <script type="module" src="./js/results/resultsEventListener.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>        
+        <script type="module" src="./js/results/resultsEventListener.js"></script>        
         <script type="module" src="./components/header/header.js"></script>
         <script type="module" src="./components/footer/footer.js"></script>
         <script type="module" src="./js/settings/themeSettings.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="./media/Vinvara.ico">
         <!--Font in icon: Imprint MT Shadow-->
@@ -43,6 +43,7 @@
                     </div>
                 </section>
                 <div id="exportCSV" class="csvContainer">
+                    <button id="uploadCSV" class="bigButton">Upload Data<img class="btnIcon" src="./media/download_doc.png"></button>
                     <a id="csvLink" class="bigButton">Download Data<img class="btnIcon" src="./media/download_doc.png"></a>
                     <a id="jpegLink" class="bigButton">Download Current Graph<img class="btnIcon" src="./media/download_graph.png"></a>
                 </div>

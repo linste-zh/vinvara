@@ -1,10 +1,16 @@
 import {experimentData, scale, settings} from './results.js';
 import {videoShown, videoPicked, timeStamp, updateTimeStamp} from './video.js'
+import {pickFile, readFileAsText} from "../importAndExport/importFiles.js"
 
 const intervalValues = []
 const timestampValues = []
 const ratingValues = []
 var chart = null
+
+function requestGraph(){
+    let cnt = document.getElementById("graphContainer")
+    cnt.innerHTML = "Select Graph"
+}
 
 function createGraph(){
     let cnt = document.getElementById("graphContainer")
@@ -21,10 +27,19 @@ function createGraph(){
     document.getElementById("intervalButton").click()
 }
 
-function requestGraph(){
-    let cnt = document.getElementById("graphContainer")
-    cnt.innerHTML = "Select Graph"
+async function loadGraph(){
+    console.log("clicked")
+
+    const resFileSrc = await pickFile(".csv")
+    var file = readFileAsText(resFileSrc)
+
+    console.log(file)
 }
+
+function readCSV(text){
+    
+}
+
 
 function showGraph(variable = intervalValues){
     if (chart) {
@@ -176,5 +191,6 @@ export{
     showGraph,
     refresh,
     createGraph,
-    toggleGraph
+    toggleGraph,
+    loadGraph
 }

@@ -10,7 +10,7 @@ document.getElementById("jpegLink").addEventListener("click", createJpeg)
 window.setUpVideo = setUpVideo
 
 
-import {toggleGraph, refresh} from './graph.js'
+import {toggleGraph, refresh, loadGraph} from './graph.js'
 
 window.addEventListener("DOMContentResize", refresh)
 window.refresh = refresh
@@ -18,6 +18,9 @@ window.refresh = refresh
 document.getElementById("intervalButton").addEventListener("click", () => {toggleGraph('interval')})
 document.getElementById("timestampButton").addEventListener("click", () => {toggleGraph('timestamp')})
 window.toggleGraph = toggleGraph
+
+document.getElementById("uploadCSV").addEventListener("click", loadGraph)
+window.loadGraph = loadGraph
 
 
 import {toggleVideo, setUpVideo} from './video.js'

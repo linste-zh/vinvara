@@ -5,19 +5,19 @@ import {setTheme} from '../settings/themeSettings.js'
 
 var content
 
-function pickFile(){
+function pickFile(type){
      return new Promise((resolve, reject) => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = ".json"
+        const input = document.createElement('input')
+        input.type = 'file'
+        input.accept = type
         input.style = "display: none;"
         input.onchange = () => {
-            let files =   Array.from(input.files);
+            let files =   Array.from(input.files)
             let chosenDoc = files[0]
             if (chosenDoc) {
-                resolve(chosenDoc);
+                resolve(chosenDoc)
             }else{
-                reject("No JSON file selected.");
+                reject("No JSON file selected.")
             }
         }
 
@@ -35,7 +35,7 @@ function readFileAsText(file) {
 }
 
 async function importSettings(){
-    const file = await pickFile()
+    const file = await pickFile(".json")
     const fileContent = await readFileAsText(file)
 
     content = JSON.parse(fileContent)
@@ -148,5 +148,7 @@ function startRemoteExperiment(){
 
 export{
     importSettingsForEdit,
-    importSettingsForRemoteEx
+    importSettingsForRemoteEx,
+    pickFile,
+    readFileAsText
 }

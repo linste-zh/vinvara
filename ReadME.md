@@ -21,6 +21,7 @@ Please address your feedback or error reports to linste.zh@gmail.com
 * scale option (instead of buttons)
 * online video sources (youtube, drive, etc.)
 * accessibility improvements
+* allow upload to graph interface
 
 ## Inspiration
 

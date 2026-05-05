@@ -1,30 +1,17 @@
-const intervalValues = []
-const timestampValues = []
-const ratingValues = []
+import {createGraph, requestGraph} from './graph.js';
+
 const experimentData = JSON.parse(localStorage.getItem("experimentDataObject"))
 const scale = JSON.parse(localStorage.getItem("scaleObject"))
 const settings = JSON.parse(localStorage.getItem("settingsObject"))
-var videoShown = false
-var videoPicked = false
 var timeStamp = 0
-var chart
+var chart = null
 
 function setUp(){
-    if(experimentData == null){
-        console.log("No data found")
+    if(experimentData != null){
+        createGraph()
     }else{
-        inputs = experimentData["dataInputs"]
-        console.log(experimentData["dataInputs"])
-
-        for (var i in inputs){
-            intervalValues.push(inputs[i].associatedInterval)
-            timestampValues.push(inputs[i].timeOfRating)
-            ratingValues.push(inputs[i].rating)
-        }
-
-        document.getElementById("intervalButton").click()
-    }    
-
+        requestGraph()
+    }
 
     document.getElementById("videoContainer").style.display = "none"
 
@@ -42,6 +29,13 @@ function setUp(){
     })
 
     toggleVideo()
+}
+
+function refresh(){
+    if(chart != null){
+        chart.resize();
+        chart.update();
+    }
 }
 
 //source: https://medium.com/@idorenyinudoh10/how-to-export-data-from-javascript-to-a-csv-file-955bdfc394a9
@@ -89,3 +83,15 @@ function createJpeg(){
     const fileName = `${currentDate.getFullYear()}/${currentDate.getMonth()+1}/${currentDate.getDate()}_${experimentData["userName"]}_${experimentData["lingVar"]}`
     jpegLink.setAttribute('download', fileName)
 }
+
+export {
+    experimentData,
+    scale,
+    settings,
+    timeStamp,
+    chart,
+    setUp,
+    refresh,
+    createCSV,
+    createJpeg
+};

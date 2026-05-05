@@ -1,15 +1,25 @@
-function toggleGraph(button){
-    ib = document.getElementById("intervalButton")
-    tsb = document.getElementById("timestampButton")
-    if(button == "interval"){
-        ib.classList.add("activeOption")
-        tsb.classList.remove("activeOption")
-        showGraph(intervalValues)
-    }else if (button == "timestamp"){
-        tsb.classList.add("activeOption")
-        ib.classList.remove("activeOption")
-        showGraph(timestampValues)
+import {experimentData, scale, settings, timeStamp, chart} from './results.js';
+import {videoShown, videoPicked} from './video.js'
+
+const intervalValues = []
+const timestampValues = []
+const ratingValues = []
+
+function createGraph(){
+    inputs = experimentData["dataInputs"]
+
+    for (var i in inputs){
+        intervalValues.push(inputs[i].associatedInterval)
+        timestampValues.push(inputs[i].timeOfRating)
+        ratingValues.push(inputs[i].rating)
     }
+
+    document.getElementById("intervalButton").click()
+}
+
+function requestGraph(){
+    let cnt = document.getElementById("graphContainer")
+    cnt.innerHTML = "Select Graph"
 }
 
 function showGraph(variable = intervalValues){
@@ -134,9 +144,23 @@ function showGraph(variable = intervalValues){
     }
 }
 
-function refresh(){
-    if(chart != null){
-        chart.resize();
-        chart.update();
+function toggleGraph(button){
+    ib = document.getElementById("intervalButton")
+    tsb = document.getElementById("timestampButton")
+    if(button == "interval"){
+        ib.classList.add("activeOption")
+        tsb.classList.remove("activeOption")
+        showGraph(intervalValues)
+    }else if (button == "timestamp"){
+        tsb.classList.add("activeOption")
+        ib.classList.remove("activeOption")
+        showGraph(timestampValues)
     }
+}
+
+export{
+    requestGraph,
+    showGraph,
+    createGraph,
+    toggleGraph
 }

@@ -4,17 +4,17 @@
         <title>Results</title>
         <link href="./css/results.css" type="text/css" rel="stylesheet">
         <link href="./css/basicLayout.css" type="text/css" rel="stylesheet">
+        <script type="module" src="./js/results/resultsEventListener.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>        
         <script type="module" src="./components/header/header.js"></script>
         <script type="module" src="./components/footer/footer.js"></script>
         <script type="module" src="./js/settings/themeSettings.js"></script>
-        <script src="./js/results/results.js"></script>
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="./media/Vinvara.ico">
         <!--Font in icon: Imprint MT Shadow-->
     </head>
-    <body onload="setUp()" onresize="refresh()">
+    <body>
         <header class="header" id="header" header-type="index">
             loading header...
         </header>
@@ -26,27 +26,27 @@
                         If you have your video file loaded up, you can click anywhere in the graph to play the video at that point and vice versa.</p>
                 </div>
                 <div id="displayMenu">
-                    <div class="displayOption" id="intervalButton" onclick="toggleGraph('interval')">Interval Graph</div>
-                    <div class="displayOption" id="timestampButton" onclick="toggleGraph('timestamp')">Timestamp Graph</div>
+                    <div class="displayOption" id="intervalButton">Interval Graph</div>
+                    <div class="displayOption" id="timestampButton">Timestamp Graph</div>
                 </div>
                 <section class="results" id="resultsGrid">
                     <div id="graphContainer">
                         <canvas id="resultChart"></canvas>
                     </div>
                     <div id="resultVideoContainer">
-                        <div id="showVideo" onclick="toggleVideo()">
+                        <div id="showVideo">
                             <b id="showVideoText">Show Video</b>
                             <img id="videoArrow" class="arrowIcon" src="./media/arrow_icon.png">
                         </div>
                         <div id="videoContainer" class="videoContainer">
                             <p>please select your video file again to make the graph interactive</p>
-                            <button id="setUpButton" class="bigButton" onclick="setUpVideo()">pick source<img class="btnIcon" src="./media/upload_vid.png"></button>
+                            <button id="setUpButton" class="bigButton">pick source<img class="btnIcon" src="./media/upload_vid.png"></button>
                         </div>
                     </div>
                 </section>
                 <div id="exportCSV" class="csvContainer">
-                    <a id="csvLink" onclick="createCSV()" class="bigButton">Download Data<img class="btnIcon" src="./media/download_doc.png"></a>
-                    <a id="jpegLink" onclick="createJpeg()" class="bigButton">Download Current Graph<img class="btnIcon" src="./media/download_graph.png"></a>
+                    <a id="csvLink" class="bigButton">Download Data<img class="btnIcon" src="./media/download_doc.png"></a>
+                    <a id="jpegLink" class="bigButton">Download Current Graph<img class="btnIcon" src="./media/download_graph.png"></a>
                 </div>
             </div>
         </main>

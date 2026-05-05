@@ -1,3 +1,8 @@
+import {timeStamp, chart} from './results.js';
+
+var videoShown = false
+var videoPicked = false
+
 function toggleVideo(){
     document.getElementById("videoArrow").classList.toggle("active")
     videoContainer = document.getElementById("videoContainer")
@@ -16,7 +21,9 @@ function toggleVideo(){
         document.getElementById("showVideoText").innerHTML = "Show Video"
         if(videoPicked){document.getElementById("video_player").pause()}
         videoContainer.style.display = "none"
-        chart.options.plugins.annotation.annotations.timestampLine.display = false
+        if(chart != null){
+            chart.options.plugins.annotation.annotations.timestampLine.display = false
+        }
         document.getElementById("resultsGrid").style.gridTemplateColumns = "1fr auto"
         videoShown = false
     }
@@ -34,8 +41,10 @@ async function setUpVideo(){
     document.getElementById("video_player").ontimeupdate  = () => {
         timeStamp = document.getElementById("video_player").currentTime
         
-        chart.options.plugins.annotation.annotations.timestampLine.value = timeStamp;
-        chart.update()
+        if(chart != null){
+            chart.options.plugins.annotation.annotations.timestampLine.value = timeStamp;
+            chart.update()
+        }
     }
 
     var changeVidButton = document.createElement("button")
@@ -54,9 +63,9 @@ function pickSrc(){
         input.style = "display: none;"
         input.onchange = () => {
             let files =   Array.from(input.files);
-            chosenVideo = files[0]
+            let chosenVideo = files[0]
             if (chosenVideo) {
-                videoSrc = URL.createObjectURL(chosenVideo);
+                let videoSrc = URL.createObjectURL(chosenVideo);
                 videoPicked = true
                 resolve(videoSrc);
             }else{
@@ -73,4 +82,11 @@ function playVideo(time){
         document.getElementById("video_player").play()
         document.getElementById("video_player").currentTime = time;
     }
+}
+
+export{
+    videoShown,
+    videoPicked,
+    setUpVideo,
+    toggleVideo
 }

@@ -1,0 +1,29 @@
+import {setUp, refresh, createCSV, createJpeg} from './results.js'
+
+window.addEventListener("DOMContentLoaded", setUp)
+window.setUp = setUp
+
+window.addEventListener("DOMContentResize", refresh)
+window.refresh = refresh
+
+document.getElementById("csvLink").addEventListener("click", createCSV)
+window.createCSV = createCSV
+
+document.getElementById("jpegLink").addEventListener("click", createJpeg)
+window.setUpVideo = setUpVideo
+
+
+import {toggleGraph} from './graph.js'
+
+document.getElementById("intervalButton").addEventListener("click", () => {toggleGraph('interval')})
+document.getElementById("timestampButton").addEventListener("click", () => {toggleGraph('timestamp')})
+window.toggleGraph = toggleGraph
+
+
+import {toggleVideo, setUpVideo} from './video.js'
+
+document.getElementById("showVideo").addEventListener("click", toggleVideo)
+window.toggleVideo = toggleVideo
+
+document.getElementById("setUpButton").addEventListener("click", setUpVideo)
+window.setUpVideo = setUpVideo

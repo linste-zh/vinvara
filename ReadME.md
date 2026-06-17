@@ -1,6 +1,8 @@
 # Vinvara
 cite as (APA 7): Steiner, Linda. (2025). *Vinvara* (Version 4.1) [Computer software]. GitHub. https://linste-zh.github.io/vinvara/
 
+This work is licensed under a CC-BY 4.0 International License (https://creativecommons.org/licenses/by/4.0/).
+
 ---
 
 ## The "video interval variable rater"

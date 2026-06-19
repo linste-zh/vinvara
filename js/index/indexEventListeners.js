@@ -5,6 +5,11 @@ document.getElementById("blueThemeButton").addEventListener("click", () => setTh
 document.getElementById("grayThemeButton").addEventListener("click", () => setTheme("gray"))
 window.setTheme = setTheme
 
+import {openCitationBox} from '../../components/footer/footer.js'
+
+document.getElementById("citeLinkHome").addEventListener("click", openCitationBox)
+window.openCitationBox = openCitationBox
+
 import {loadExperiment} from '../settings/settings.js'
 
 document.getElementById("experimentStartButton").addEventListener("click", loadExperiment)

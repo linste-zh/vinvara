@@ -1,5 +1,6 @@
 import {activeExperimentState, experimentData, settings, scale} from './experiment.js';
 import {pauseVideo, playVideo} from './video.js';
+import {DataPoint} from '../DataPoint.js'
 
 
 function applyScale(){

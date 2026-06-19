@@ -1,6 +1,6 @@
 import {createGraph, requestGraph} from './graph.js';
 
-const experimentData = JSON.parse(localStorage.getItem("experimentDataObject"))
+var experimentData = JSON.parse(localStorage.getItem("experimentDataObject"))
 const scale = JSON.parse(localStorage.getItem("scaleObject"))
 const settings = JSON.parse(localStorage.getItem("settingsObject"))
 
@@ -8,6 +8,11 @@ function setUp(){
     if(experimentData != null){
         createGraph()
     }else{
+        experimentData = {
+            "userName": "User",
+            "lingVar": "Variable",
+            "dataInputs": []
+        }
         requestGraph()
     }
 

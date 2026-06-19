@@ -1,6 +1,7 @@
 import {experimentData, scale, settings} from './results.js';
 import {videoShown, videoPicked, timeStamp, updateTimeStamp} from './video.js'
 import {pickFile, readFileAsText} from "../importAndExport/importFiles.js"
+import {DataPoint} from '../DataPoint.js'
 
 const intervalValues = []
 const timestampValues = []
@@ -31,19 +32,37 @@ async function loadGraph(){
     console.log("clicked")
 
     const resFileSrc = await pickFile(".csv")
-    var file = readFileAsText(resFileSrc)
+    readFileAsText(resFileSrc).then(function(value) {
+        const dataPoints = readDataPointsCSV(value)
+        experimentData["dataInputs"] = dataPoints
 
-    console.log(file)
+        createGraph()
+    })
 }
 
-function readCSV(text){
-    
+function readDataPointsCSV(text){
+    text = text.replace(/\n/g, "")
+    const csvRows = text.split("\r")
+    var dataPoints = new Array()
+
+    for(var row in csvRows){
+        var rowCells = csvRows[row].split(",")
+        if(!isNaN(parseFloat(rowCells[0])) && isFinite(rowCells[0])){
+            dataPoints.push(new DataPoint(rowCells[0], rowCells[1], rowCells[2]))
+        }
+    }
+
+    return dataPoints
 }
 
 
 function showGraph(variable = intervalValues){
     if (chart) {
         chart.destroy();
+    }
+
+    if(scale == null){
+        
     }
 
     var middle_rating = scale[Math.floor(Object.values(scale).length / 2)]

@@ -43,4 +43,5 @@ function closeCiteBox(){
 
 function addEventListeners(){
     document.getElementById("citeLink").addEventListener("click", openCitationBox)
+    document.getElementById("citeLinkHome").addEventListener("click", openCitationBox)
 }
